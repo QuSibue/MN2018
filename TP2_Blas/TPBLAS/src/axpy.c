@@ -29,7 +29,7 @@ void mncblas_daxpy(const int N, const double a, const double *X, const int incX,
   return ;
 }
 
-void mncblas_caxpy(const int N, const float a, const void *X, const int incX,
+void mncblas_caxpy(const int N, void* a, const void *X, const int incX,
                 void *Y, const int incY)
 {
   register unsigned int i = 0 ;
@@ -44,7 +44,7 @@ void mncblas_caxpy(const int N, const float a, const void *X, const int incX,
   return ;
 }
 
-void mncblas_zaxpy(const int N, const float a, const void *X, const int incX,
+void mncblas_zaxpy(const int N, void* a, const void *X, const int incX,
 		                    void *Y, const int incY)
 {
   register unsigned int i = 0 ;
