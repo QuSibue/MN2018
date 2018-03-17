@@ -25,7 +25,7 @@ mnaxpy: mnaxpy.o $(LIB_DIR)/libmnblas.a
 	gcc -o mnaxpy mnaxpy.o $(OPTIONS_LINK_STATIC)
 
 mnnrm2: mnnrm2.o $(LIB_DIR)/libmnblas.a
-	gcc -o mnnrm2 mnnrm2.o $(OPTIONS_LINK_STATIC)
+	gcc -o mnnrm2 mnnrm2.o fonctions_test.o $(OPTIONS_LINK_STATIC)
 
 mnswapdyn: mnswap.o $(LIB_DIR)/libmnblasdyn.so
 	gcc -o mnswapdyn mnswap.o $(OPTIONS_LINK_DYN)
@@ -36,19 +36,19 @@ mntestdyn: mntest.o $(LIB_DIR)/libmnblasdyn.so
 mnnrm2dyn: mnnrm2.o $(LIB_DIR)/libmnblasdyn.so
 	gcc -o mnnrm2dyn mnnrm2.o $(OPTIONS_LINK_DYN)
 
-mntest.o: mntest.c $(INC_DIR)/mnblas.h
+mntest.o: mntest.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h $(INC_DIR)/fonctions_test.h
 	gcc $(OPTIONS_COMPIL) -c mntest.c
 
 mnasum.o: mnasum.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h $(INC_DIR)/fonctions_test.h
 	gcc $(OPTIONS_COMPIL) -c mnasum.c
 
-mnaxpy.o: mnaxpy.c $(INC_DIR)/mnblas.h
+mnaxpy.o: mnaxpy.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h $(INC_DIR)/fonctions_test.h
 	gcc $(OPTIONS_COMPIL) -c mnaxpy.c
 
-mnnrm2.o: mnnrm2.c $(INC_DIR)/mnblas.h
+mnnrm2.o: mnnrm2.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h $(INC_DIR)/fonctions_test.h
 	gcc $(OPTIONS_COMPIL) -c mnnrm2.c
 
-mnswap.o: mnswap.c $(INC_DIR)/mnblas.h
+mnswap.o: mnswap.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h $(INC_DIR)/fonctions_test.h
 	gcc $(OPTIONS_COMPIL) -c mnswap.c
 
 fonctions_test.o: fonctions_test.c $(INC_DIR)/complex.h $(INC_DIR)/fonctions_test.h
