@@ -1,4 +1,4 @@
-all: mntest mntestdyn mnswap mnswapdyn mnasum mnnrm2 mndot
+all: mntest mnswap mnasum mnnrm2 mndot mnaxpy
 
 INC_DIR=../include
 
