@@ -3,6 +3,7 @@
 
 #include "mnblas.h"
 #include "complex.h"
+#include "fonctions_test.h"
 
 /*
   Mesure des cycles
@@ -10,131 +11,19 @@
 
 #include <x86intrin.h>
 
-
-#define VECSIZE    1000
-
-
 //===================================================DEFINITION=============================================================================================//
 
-typedef float vfloat[VECSIZE] ;
-typedef double vdouble[VECSIZE];
-typedef struct complex_simple vcsimple[VECSIZE];
-typedef struct complex_double vcdouble[VECSIZE];
+vfloat vec1,blvec1,vec2,blvec2;
+float resultatf,resultatcs;
+vdouble vecd1,blvecd1,vecd2,blvecd2;
+double resultatd,resultatcd;
+vcsimple veccs1,veccs2,blveccs1,blveccs2;
+vcdouble veccd1,veccd2,blveccd1,blveccd2;
+double m_Flops;
 
-
-vfloat vec1,vec2;
-float resultatf;
-vdouble vecd1,vecd2;
-double resultatd;
-vcsimple veccs1,veccs2;
-struct complex_simple resultatcs;
-vcdouble veccd1,veccd1;
-struct complex_double resultatcd;
 
 
 //=======================================================================================================================================================//
-
-
-//===================================================INIT===================================================================================================//
-
-void vector_init (vfloat V, float x)
-{
-  register unsigned int i ;
-
-  for (i = 0; i < VECSIZE; i++)
-    V [i] = x ;
-
-  return ;
-}
-
-void vector_init_double (vdouble V, double x)
-{
-  register unsigned int i ;
-
-  for (i = 0; i < VECSIZE; i++)
-    V[i] = x ;
-
-  return ;
-}
-
-
-void vector_init_csimple (vcsimple V, struct complex_simple x)
-{
-  register unsigned int i ;
-
-
-  for (i = 0; i < VECSIZE; i++){
-    V[i].real = x.real ;
-    V[i].imaginary = x.imaginary ;
-  }
-
-
-  return ;
-}
-
-void vector_init_cdouble (vcdouble V, struct complex_double x)
-{
-  register unsigned int i ;
-
-  for (i = 0; i < VECSIZE; i++){
-    V[i].real = x.real ;
-    V[i].imaginary = x.imaginary ;
-  }
-
-  return ;
-}
-
-//=========================================================================================================================================================//
-
-
-//===================================================PRINT==================================================================================================//
-
-void vector_print (vfloat V)
-{
-  register unsigned int i ;
-
-  for (i = 0; i < VECSIZE; i++)
-    printf ("%f ", V[i]) ;
-  printf ("\n") ;
-
-  return ;
-}
-
-void vector_print_double (vdouble V)
-{
-  register unsigned int i ;
-
-  for (i = 0; i < VECSIZE; i++)
-    printf ("%f ", V[i]) ;
-  printf ("\n") ;
-
-  return ;
-}
-
-
-void vector_print_vcsimple (vcsimple V)
-{
-  register unsigned int i ;
-
-  for (i = 0; i < VECSIZE; i++)
-    printf ("%f +i%f ", V[i].real,V[i].imaginary) ;
-  printf ("\n") ;
-
-  return ;
-}
-
-void vector_print_vcdouble (vcdouble V)
-{
-  register unsigned int i ;
-
-  for (i = 0; i < VECSIZE; i++)
-    printf ("%f +i%f ", V[i].real,V[i].imaginary) ;
-  printf ("\n") ;
-
-  return ;
-}
-
-//=========================================================================================================================================================//
 
 
 int main (int argc, char **argv)
@@ -243,7 +132,7 @@ int main (int argc, char **argv)
   z.imaginary = 1.5;
 
   start = _rdtsc () ;
-     resultatcd = cblas_dzaxpy (VECSIZE,z, veccd1, 1,veccd2,1) ;
+     resultatcd = cblas_zaxpy (VECSIZE,z, veccd1, 1,veccd2,1) ;
   end = _rdtsc () ;
 
   printf ("cblas_zswap: nombre de cycles: %Ld \n", end-start-residu) ;
@@ -252,7 +141,7 @@ int main (int argc, char **argv)
   vector_init_cdouble(veccd2,y);
 
   start = _rdtsc () ;
-     resultatcd = mncblas_dzaxpy (VECSIZE,z, veccd1, 1,veccd2,1) ;
+     resultatcd = mncblas_zaxpy (VECSIZE,z, veccd1, 1,veccd2,1) ;
   end = _rdtsc () ;
 
   printf ("cblas_zswap: nombre de cycles: %Ld \n", end-start-residu) ;
