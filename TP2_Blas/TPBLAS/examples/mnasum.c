@@ -48,7 +48,7 @@ printf("=========================VECTEUR FLOAT================================\n
 
   printf ("cblas_sasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatf);
-	printf ("resultat en flops : %f\n",m_Flops) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
   start = _rdtsc () ;
@@ -59,7 +59,7 @@ printf("=========================VECTEUR FLOAT================================\n
 
   printf ("mncblas_sasum: nombre de cycles: %Ld \n", end-start-residu) ;
   printf ("resultat: %f \n",resultatf) ;
-	printf ("resultat en flop : %f \n",m_Flops) ;
+	printf ("resultat en Gflop : %f \n",m_Flops) ;
   printf("\n");
 
   start = _rdtsc () ;
@@ -69,7 +69,7 @@ printf("=========================VECTEUR FLOAT================================\n
 
   printf ("cblas_sasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatf);
-	printf ("resultat en flops : %f\n",m_Flops) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
   if(comparaisonVecteurFloat(vec1,VECSIZE,blvec1,VECSIZE)){
@@ -100,7 +100,7 @@ printf("=========================VECTEUR Double================================\
 
   printf ("cblas_dasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatd);
-	printf ("resultat en flops : %f\n",m_Flops) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
 
@@ -111,7 +111,7 @@ printf("=========================VECTEUR Double================================\
 
   printf ("mncblas_dasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatd);
-	printf ("resultat en flops : %f\n",m_Flops) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
   start = _rdtsc () ;
@@ -121,7 +121,7 @@ printf("=========================VECTEUR Double================================\
 
   printf ("cblas_dasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatd);
-	printf ("resultat en flops : %f\n",m_Flops) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
 
@@ -157,7 +157,7 @@ printf("=========================VECTEUR COMPLEXES SIMPLES======================
   m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
   printf ("mncblas_scasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcs);
-  printf ("resultat en flops : %f\n",m_Flops) ;
+  printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
   start = _rdtsc () ;
@@ -166,7 +166,7 @@ printf("=========================VECTEUR COMPLEXES SIMPLES======================
   m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
   printf ("mncblas_scasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcs);
-  printf ("resultat en flops : %f\n",m_Flops) ;
+  printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
   start = _rdtsc () ;
@@ -176,7 +176,7 @@ printf("=========================VECTEUR COMPLEXES SIMPLES======================
   m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
   printf ("mncblas_scasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcs);
-  printf ("resultat en flops : %f\n",m_Flops) ;
+  printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
   if(comparaisonVecteurCS(veccs1,VECSIZE,blveccs1,VECSIZE)){
@@ -210,7 +210,7 @@ printf("=========================VECTEUR COMPLEXES DOUBLES======================
   m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
   printf ("mncblas_dzasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcd);
-  printf ("resultat en flops : %f\n",m_Flops) ;
+  printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
   start = _rdtsc () ;
@@ -220,7 +220,7 @@ printf("=========================VECTEUR COMPLEXES DOUBLES======================
   m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
   printf ("mncblas_dzasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcd);
-  printf ("resultat en flops : %f\n",m_Flops) ;
+  printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
   start = _rdtsc () ;
@@ -230,7 +230,7 @@ printf("=========================VECTEUR COMPLEXES DOUBLES======================
   m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
   printf ("mncblas_dzasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcd);
-  printf ("resultat en flops : %f\n",m_Flops) ;
+  printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
   if(comparaisonVecteurCD(veccd1,VECSIZE,blveccd1,VECSIZE)){

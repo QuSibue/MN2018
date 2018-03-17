@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "mnblas.h"
 #include "complex.h"
 
