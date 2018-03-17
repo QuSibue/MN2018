@@ -37,8 +37,10 @@ void mncblas_caxpy(const int N, const void* a, const void *X, const int incX,
 
   for (; ((i < N) && (j < N)) ; i += incX, j += incY)
     {
-      ((struct complex_simple*)Y)[j].real = ((struct complex_simple*)a)->real * ((struct complex_simple*)X)[i].real + ((struct complex_simple*)Y)[j].real;
-      ((struct complex_simple*)Y)[j].imaginary = ((struct complex_simple*)a)->imaginary * ((struct complex_simple*)X)[i].imaginary + ((struct complex_simple*)Y)[j].imaginary ;
+      float realTamp = ((struct complex_simple*)a)->real * ((struct complex_simple*)X)[i].real - ((struct complex_simple*)a)->imaginary * ((struct complex_simple*)X)[i].imaginary;
+      float imaTamp = ((struct complex_simple*)a)->real * ((struct complex_simple*)X)[i].imaginary + ((struct complex_simple*)a)->imaginary * ((struct complex_simple*)X)[i].real;
+      ((struct complex_simple*)Y)[j].real =  realTamp + ((struct complex_simple*)Y)[j].real;
+      ((struct complex_simple*)Y)[j].imaginary = imaTamp + ((struct complex_simple*)Y)[j].imaginary;
     }
 
   return ;
@@ -52,8 +54,10 @@ void mncblas_zaxpy(const int N, const void* a, const void *X, const int incX,
 
   for (; ((i < N) && (j < N)) ; i += incX, j += incY)
     {
-      ((struct complex_double*)Y)[j].real = ((struct complex_double*)a)->real * ((struct complex_double*)X)[i].real + ((struct complex_double*)Y)[j].real;
-      ((struct complex_double*)Y)[j].imaginary =((struct complex_double*)a)->imaginary * ((struct complex_double*)X)[i].imaginary + ((struct complex_double*)Y)[j].imaginary ;
+      float realTamp = ((struct complex_double*)a)->real * ((struct complex_double*)X)[i].real - ((struct complex_double*)a)->imaginary * ((struct complex_double*)X)[i].imaginary;
+      float imaTamp = ((struct complex_double*)a)->real * ((struct complex_double*)X)[i].imaginary + ((struct complex_double*)a)->imaginary * ((struct complex_double*)X)[i].real;
+      ((struct complex_double*)Y)[j].real =  realTamp + ((struct complex_double*)Y)[j].real;
+      ((struct complex_double*)Y)[j].imaginary = imaTamp + ((struct complex_double*)Y)[j].imaginary;
     }
 
   return ;

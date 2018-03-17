@@ -38,7 +38,7 @@ nrm2.o : nrm2.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h
 	gcc  $(OPTIONS) -c nrm2.c -lm
 
 asum.o : asum.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h
-	gcc  $(OPTIONS) -c asum.c -lm
+	gcc  $(OPTIONS) -c asum.c
 
 axpy.o : axpy.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h
 	gcc  $(OPTIONS) -c axpy.c -lm
