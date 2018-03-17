@@ -15,8 +15,8 @@ OPTIONS_LINK_DYN  = -L$(LIB_DIR) $(LIBDYN) -lgsl -lgslcblas -lm
 mntest: mntest.o $(LIB_DIR)/libmnblas.a fonctions_test.o
 	gcc -o mntest mntest.o fonctions_test.o $(OPTIONS_LINK_STATIC)
 
-mnswap: mnswap.o $(LIB_DIR)/libmnblas.a
-	gcc -o mnswap mnswap.o $(OPTIONS_LINK_STATIC)
+mnswap: mnswap.o $(LIB_DIR)/libmnblas.a fonctions_test.o
+	gcc -o mnswap mnswap.o fonctions_test.o $(OPTIONS_LINK_STATIC)
 
 mnasum: mnasum.o $(LIB_DIR)/libmnblas.a fonctions_test.o
 	gcc -o mnasum mnasum.o fonctions_test.o $(OPTIONS_LINK_STATIC)

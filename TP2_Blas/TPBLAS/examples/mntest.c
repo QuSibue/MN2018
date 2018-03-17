@@ -51,7 +51,7 @@ int main (int argc, char **argv)
 
   m_debit=DEBIT(3.4,end-start-residu);
   printf ("mncblas_scopy: nombre de cycles: %Ld \n", end-start-residu) ;
-	printf ("resultat en flop : %f \n",m_debit) ;
+	printf ("resultat en DEBIT : %f \n",m_debit) ;
   printf("\n");
 
 
