@@ -108,7 +108,7 @@ double DEBIT(double frequence,long long cycles){
 }
 
 double FLOPS(int coeurs,double frequence,int flop,long long cycles){
-	return coeurs*frequence*(flop/cycles);
+	return coeurs*frequence*( ((double)flop) /cycles);
 }
 
 int compare_complex_simple(struct complex_simple *c1,struct complex_simple *c2){
