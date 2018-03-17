@@ -22,14 +22,12 @@ typedef struct complex_simple vcsimple[VECSIZE];
 typedef struct complex_double vcdouble[VECSIZE];
 
 
-vfloat vec1,vec2;
-float resultatf;
+vfloat vec1, vec2 ;
+float resultatf,resultatcs;
 vdouble vecd1,vecd2;
-double resultatd;
-vcsimple veccs1,veccs2;
-struct complex_simple resultatcs;
-vcdouble veccd1,veccd1;
-struct complex_double resultatcd;
+double resultatd,resultatcd;
+vcsimple veccs1, veccs2;
+vcdouble veccd1,veccd2;
 
 
 //=======================================================================================================================================================//
@@ -150,113 +148,97 @@ int main (int argc, char **argv)
 
 //====================================================vecteur float===========================================================//
   vector_init (vec1, 1.0) ;
-  vector_init (vec2, 3.0) ;
 
   start = _rdtsc () ;
-     cblas_saxpy (VECSIZE,2.0, vec1, 1,vec2,1) ;
+     resultatf=cblas_snrm2(VECSIZE, vec1, 1) ;
   end = _rdtsc () ;
 
   printf ("cblas_sswap nombre de cycles cblas: %Ld \n", end-start-residu) ;
-  vector_print(vec2);
+  printf ("resultat : %f\n",resultatf);
 
-  vector_init (vec2,3.0);
 
   start = _rdtsc () ;
-     mncblas_saxpy (VECSIZE,2.0, vec1, 1,vec2,1) ;
+     resultatf=mncblas_snrm2(VECSIZE, vec1, 1) ;
   end = _rdtsc () ;
 
-  printf ("mncblas_sswap: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print(vec2);
 
+  /*printf ("Vector 2:\n") ;
+  vector_print (vec2) ;*/
+
+
+  printf ("mncblas_sswap: nombre de cycles: %Ld \n", end-start-residu) ;
+  printf ("resultat : %f \n",resultatf) ;
+
+  /*printf("Vector 2 float :\n");
+  vector_print(vec2);*/
 //============================================================================================================================//
 
 
 //====================================================vecteur double===========================================================//
-  vector_init_double(vecd1,1.0);
-  vector_init_double(vecd2,3.0);
+  vector_init_double(vecd1,2.0);
 
   start = _rdtsc () ;
-     cblas_daxpy (VECSIZE,2.0,vecd1, 1,vecd2,1) ;
+     resultatd = cblas_dnrm2 (VECSIZE, vecd1, 1) ;
   end = _rdtsc () ;
 
   printf ("cblas_dswapy: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print_double(vecd2);
-
-  vector_init_double(vecd2,3.0);
+  printf ("resultat : %f\n",resultatd);
 
   start = _rdtsc () ;
-     mncblas_daxpy (VECSIZE,2.0, vecd1, 1,vecd2,1) ;
+     resultatd = mncblas_dnrm2 (VECSIZE, vecd1, 1) ;
   end = _rdtsc () ;
 
   printf ("mncblas_dswapy: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print_double(vecd2);
+  printf ("resultat : %f\n",resultatd);
 
+  /*printf("Vector 2 double\n");
+  vector_print_double(vecd2);
+  vector_print_double(vecd1);*/
 //============================================================================================================================//
 
 //====================================================vecteur complex_simple===========================================================//
   struct complex_simple x;
   x.real = 2.0;
-  x.imaginary = 1.5;
+  x.imaginary = 3.0;
   vector_init_csimple(veccs1,x);
 
-  x.real = 1.0;
-  x.imaginary = 3.0;
-  vector_init_csimple(veccs2,x);
-
-  struct complex_simple w;
-  w.real = 1.0;
-  w.imaginary = -0.5;
-
-
   start = _rdtsc () ;
-     cblas_caxpy (VECSIZE,w, veccs1, 1,veccs2,1) ;
+     resultatcs = cblas_scnrm2 (VECSIZE, veccs1, 1) ;
   end = _rdtsc () ;
 
   printf ("cblas_cswap: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print_vcsimple(veccs2);
-
-  vector_init_csimple(veccs2,x);
+  printf ("resultat : %f\n",resultatcs);
 
   start = _rdtsc () ;
-     resultatcs = mncblas_caxpy (VECSIZE,w, veccs1, 1,veccs2,1) ;
+     resultatcs = mncblas_scnrm2 (VECSIZE, veccs1, 1) ;
   end = _rdtsc () ;
 
   printf ("mncblas_cswap: nombre de cycles: %Ld \n", end-start-residu) ;
   printf ("resultat : %f\n",resultatcs);
-  vector_print_vcsimple(veccs2);
+
 
 //=====================================================================================================================================//
 
 
 //====================================================vecteur complex_double===========================================================//
   struct complex_double y;
-  y.real = 2.0;
-  y.imaginary = 1.5;
+  y.real = 4.0;
+  y.imaginary = 5.0;
   vector_init_cdouble(veccd1,y);
 
-  y.real = 1.0;
-  y.imaginary = 3.0;
-  vector_init_cdouble(veccd2,y);
-
-  struct complex_double z;
-  z.real = -2.0;
-  z.imaginary = 1.5;
-
   start = _rdtsc () ;
-     resultatcd = cblas_dzaxpy (VECSIZE,z, veccd1, 1,veccd2,1) ;
+     resultatcd = cblas_dznrm2 (VECSIZE, veccd1, 1) ;
   end = _rdtsc () ;
 
   printf ("cblas_zswap: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print_vcdouble(veccd2);
-
-  vector_init_cdouble(veccd2,y);
+  printf ("resultat %f\n",resultatcd);
 
   start = _rdtsc () ;
-     resultatcd = mncblas_dzaxpy (VECSIZE,z, veccd1, 1,veccd2,1) ;
+     resultatcd = mncblas_dznrm2 (VECSIZE, veccd1, 1) ;
   end = _rdtsc () ;
 
   printf ("cblas_zswap: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print_vcdouble(veccd2);
+  printf ("resultat %f\n",resultatcd);
 //=====================================================================================================================================//
 
 

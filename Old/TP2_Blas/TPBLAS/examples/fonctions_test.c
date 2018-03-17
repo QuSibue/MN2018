@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include "fonctions_test.h"
-
-
+#include "complex.h"
+#define VECSIZE   1000
 
 //===================================================INIT===================================================================================================//
 
@@ -103,68 +101,3 @@ void vector_print_vcdouble (vcdouble V)
 }
 
 //=========================================================================================================================================================//
-
-double FLOPS(int coeurs,double frequence,int flop,long long cycles){
-	return coeurs*frequence*(flop/cycles);
-}
-
-int compare_complex_simple(struct complex_simple *c1,struct complex_simple *c2){
-	return ( c1->real == c2->real && c1->imaginary == c2->imaginary );
-}
-
-int compare_complex_double(struct complex_double *c1,struct complex_double *c2){
-	return ( c1->real == c2->real && c1->imaginary == c2->imaginary );
-}
-
-
-int comparaisonVecteurFloat(float *v1,int taillev1,float *v2,int taillev2){
-	if (taillev1 != taillev2){
-		return 0;
-	}else{
-		int i=0;
-		while (i<taillev1 && v1[i] == v2[i]){
-			i++;
-		}
-		return i>=taillev1;
-	}
-
-}
-
-int comparaisonVecteurDouble(double *v1,int taillev1,double *v2,int taillev2){
-	if (taillev1 != taillev2){
-		return 0;
-	}else{
-		int i=0;
-		while (i<taillev1 && v1[i] == v2[i]){
-			i++;
-		}
-		return i>=taillev1;
-	}
-
-}
-
-int comparaisonVecteurCS(struct complex_simple *v1,int taillev1,struct complex_simple *v2,int taillev2){
-	if (taillev1 != taillev2){
-		return 0;
-	}else{
-		int i=0;
-		while (i<taillev1 && compare_complex_simple(&v1[i],&v2[i])){
-			i++;
-		}
-		return i>=taillev1;
-	}
-
-}
-
-int comparaisonVecteurCD(struct complex_double *v1,int taillev1,struct complex_double *v2,int taillev2){
-	if (taillev1 != taillev2){
-		return 0;
-	}else{
-		int i=0;
-		while (i<taillev1 && compare_complex_double(&v1[i],&v2[i])){
-			i++;
-		}
-		return i>=taillev1;
-	}
-
-}

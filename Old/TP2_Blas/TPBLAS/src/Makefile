@@ -20,31 +20,28 @@ libmnblas.a: copy.o swap.o dot.o nrm2.o asum.o
 
 libmnblasdyn.so:copy.o swap.o dot.o nrm2.o asum.o
 	rm -f libmnblasdyn.so $(LIB_DIR)/libmnblasdyn.so
-	gcc -shared -o libmnblasdyn.so copy.o swap.o dot.o nrm2.o asum.o
+	gcc -shared -o libmnblasdyn.so copy.o swap.o dot.o nrm2.o asum.o 
 	cp libmnblasdyn.so $(LIB_DIR)
 
 # BLAS 1
 
-copy.o : copy.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h
+copy.o : copy.c $(INC_DIR)/mnblas.h
 	gcc $(OPTIONS) -c copy.c
 
-swap.o : swap.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h
+swap.o : swap.c $(INC_DIR)/mnblas.h
 	gcc  $(OPTIONS) -c swap.c
 
-dot.o : dot.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h
+dot.o : dot.c $(INC_DIR)/mnblas.h
 	gcc  $(OPTIONS) -c dot.c
 
-nrm2.o : nrm2.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h
+nrm2.o : nrm2.c $(INC_DIR)/mnblas.h
 	gcc  $(OPTIONS) -c nrm2.c -lm
 
-asum.o : asum.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h
+asum.o : asum.c $(INC_DIR)/mnblas.h
 	gcc  $(OPTIONS) -c asum.c -lm
 
-axpy.o : axpy.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h
+axpy.o : axpy.c $(INC_DIR)/mnblas.h
 	gcc  $(OPTIONS) -c axpy.c -lm
-
-complex.o : complex.c $(INC_DIR)/complex.h
-	gcc  $(OPTIONS) -c complex.c -lm
 # BLAS 2
 
 # BLAS 3

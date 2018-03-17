@@ -1,20 +1,11 @@
 #ifndef FONCTIONS_TEST_H
 #define FONCTIONS_TEST_H
-#include "complex.h"
 
-
-#define VECSIZE   1000
-
-
-
-typedef float vfloat[VECSIZE] ;
-typedef double vdouble[VECSIZE];
-typedef struct complex_simple vcsimple[VECSIZE];
-typedef struct complex_double vcdouble[VECSIZE];
 //=======================================================INIT=========================================================================================//
 void vector_init (vfloat V, float x);
 
 void vector_init_double (vdouble V, double x);
+
 
 void vector_init_csimple (vcsimple V, struct complex_simple x);
 
@@ -38,21 +29,9 @@ void vector_print_vcdouble (vcdouble V);
 
 //=======================================================MERSURES==========================================================================================//
 
-double FLOPS(int coeurs,double frequence,int flop,long long cycles);
+float FLOPS()
 
-int compare_complex_simple(struct complex_simple *c1,struct complex_simple *c2);
 
-int compare_complex_double(struct complex_double *c1,struct complex_double *c2);
-
-int comparaisonVecteurFloat(float *v1,int taillev1,float *v2,int taillev2);
-
-int comparaisonVecteurDouble(double *v1,int taillev1,double *v2,int taillev2);
-
-int comparaisonVecteurCS(struct complex_simple *v1,int taillev1,struct complex_simple *v2,int taillev2);
-
-int comparaisonVecteurCD(struct complex_double *v1,int taillev1,struct complex_double *v2,int taillev2);
 
 
 //=========================================================================================================================================================//
-
-#endif
