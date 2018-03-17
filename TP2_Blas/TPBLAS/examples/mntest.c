@@ -54,6 +54,16 @@ int main (int argc, char **argv)
 	printf ("resultat en flop : %f \n",m_debit) ;
   printf("\n");
 
+
+  start = _rdtsc () ;
+     cblas_scopy (VECSIZE, vec1, 1, vec2, 1) ;
+  end = _rdtsc () ;
+
+  m_debit=DEBIT(3.4,end-start-residu);
+  printf ("cblas_scopy nombre de cycles cblas: %Ld \n", end-start-residu) ;
+	printf ("resultat en DEBIT : %f\n",m_debit) ;
+  printf("\n");
+
   if(comparaisonVecteurFloat(vec2,VECSIZE,blvec2,VECSIZE)){
     printf ("Résultats entre cblas et mnblas identiques\n") ;
   }
@@ -92,6 +102,15 @@ printf("=========================VECTEUR Double================================\
 
   m_debit=DEBIT(3.4,end-start-residu);
   printf ("mncblas_dcopy nombre de cycles cblas: %Ld \n", end-start-residu) ;
+	printf ("resultat en debit : %f\n",m_debit) ;
+  printf("\n");
+
+  start = _rdtsc () ;
+     cblas_dcopy (VECSIZE, vecd1, 1, vecd2, 1) ;
+  end = _rdtsc () ;
+
+  m_debit=DEBIT(3.4,end-start-residu);
+  printf ("cblas_dcopy nombre de cycles cblas: %Ld \n", end-start-residu) ;
 	printf ("resultat en debit : %f\n",m_debit) ;
   printf("\n");
 
@@ -137,6 +156,15 @@ printf("=========================VECTEUR Double================================\
   printf ("resultat en debit : %f\n",m_debit) ;
   printf("\n");
 
+  start = _rdtsc () ;
+     cblas_ccopy (VECSIZE, veccs1, 1, veccs2, 1) ;
+  end = _rdtsc () ;
+
+  m_debit=DEBIT(3.4,end-start-residu);
+  printf ("cblas_ccopy nombre de cycles cblas: %Ld \n", end-start-residu) ;
+  printf ("resultat en debit : %f\n",m_debit) ;
+  printf("\n");
+
   if(comparaisonVecteurCS(veccs2,VECSIZE,blveccs2,VECSIZE)){
     printf ("Résultats entre cblas et mnblas identiques\n") ;
   }
@@ -176,6 +204,15 @@ printf("=========================VECTEUR Double================================\
 
   m_debit=DEBIT(3.4,end-start-residu);
   printf ("mncblas_zcopy nombre de cycles cblas: %Ld \n", end-start-residu) ;
+  printf ("resultat en debit : %f\n",m_debit) ;
+  printf("\n");
+
+  start = _rdtsc () ;
+     cblas_zcopy (VECSIZE, veccd1, 1, veccd2, 1) ;
+  end = _rdtsc () ;
+
+  m_debit=DEBIT(3.4,end-start-residu);
+  printf ("cblas_zcopy nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat en debit : %f\n",m_debit) ;
   printf("\n");
 

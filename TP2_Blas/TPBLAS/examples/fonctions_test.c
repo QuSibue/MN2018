@@ -104,11 +104,11 @@ void vector_print_vcdouble (vcdouble V)
 
 //=========================================================================================================================================================//
 double DEBIT(double frequence,long long cycles){
-  return ((sizeof(float)*VECSIZE)/(cycles))*frequence;
+  return ((4*(float)VECSIZE)/(cycles))*frequence;
 }
 
 double FLOPS(int coeurs,double frequence,int flop,long long cycles){
-	return coeurs*frequence*( ((double)flop) /cycles);
+	return coeurs*frequence*(((double)flop)/cycles);
 }
 
 int compare_complex_simple(struct complex_simple *c1,struct complex_simple *c2){
