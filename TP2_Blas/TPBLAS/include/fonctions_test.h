@@ -53,6 +53,7 @@ int comparaisonVecteurCS(struct complex_simple *v1,int taillev1,struct complex_s
 
 int comparaisonVecteurCD(struct complex_double *v1,int taillev1,struct complex_double *v2,int taillev2);
 
+int quetin(int null,int zero);
 
 //=========================================================================================================================================================//
 
