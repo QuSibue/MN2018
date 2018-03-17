@@ -41,21 +41,50 @@ int main (int argc, char **argv)
   vector_init (vec1, 1.0) ;
   vector_init (vec2, 3.0) ;
 
+  vector_init (blvec1, 1.0) ;
+  vector_init (blvec2, 3.0) ;
+
+printf("=========================VECTEUR FLOAT================================\n");
+
   start = _rdtsc () ;
      cblas_saxpy (VECSIZE,2.0, vec1, 1,vec2,1) ;
   end = _rdtsc () ;
 
-  printf ("cblas_sswap nombre de cycles cblas: %Ld \n", end-start-residu) ;
-  vector_print(vec2);
-
-  vector_init (vec2,3.0);
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("cblas_saxpy nombre de cycles cblas: %Ld \n", end-start-residu) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
+  printf("\n");
 
   start = _rdtsc () ;
-     mncblas_saxpy (VECSIZE,2.0, vec1, 1,vec2,1) ;
+     mncblas_saxpy (VECSIZE,2.0, blvec1, 1,blvec2,1) ;
   end = _rdtsc () ;
 
-  printf ("mncblas_sswap: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print(vec2);
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("mncblas_sasum: nombre de cycles: %Ld \n", end-start-residu) ;
+	printf ("resultat en Gflop : %f \n",m_Flops) ;
+  printf("\n");
+  //vector_print(vec2);
+
+  vector_init (vec2, 3.0) ;
+  start = _rdtsc () ;
+     cblas_saxpy (VECSIZE,2.0, vec1, 1,vec2,1) ;
+  end = _rdtsc () ;
+
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("cblas_saxpy nombre de cycles cblas: %Ld \n", end-start-residu) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
+  printf("\n");
+
+  if(comparaisonVecteurFloat(blvec2,VECSIZE,blvec2,VECSIZE)){
+    printf ("Résultats entre cblas et mnblas identiques\n") ;
+  }
+  else{
+    printf ("Erreurs ! Résultats entre cblas et mnblas différents\n") ;
+  }
+
+
+
+  printf("======================================================================\n\n");
 
 //============================================================================================================================//
 
@@ -64,21 +93,54 @@ int main (int argc, char **argv)
   vector_init_double(vecd1,1.0);
   vector_init_double(vecd2,3.0);
 
+  vector_init_double(blvecd1,1.0);
+  vector_init_double(blvecd2,3.0);
+
+
+printf("=========================VECTEUR Double================================\n");
+
   start = _rdtsc () ;
      cblas_daxpy (VECSIZE,2.0,vecd1, 1,vecd2,1) ;
   end = _rdtsc () ;
 
-  printf ("cblas_dswapy: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print_double(vecd2);
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("cblas_daxpy nombre de cycles cblas: %Ld \n", end-start-residu) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
+  printf("\n");
+
+
+
+  start = _rdtsc () ;
+     mncblas_daxpy (VECSIZE,2.0, blvecd1, 1,blvecd2,1) ;
+  end = _rdtsc () ;
+
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("mblas_daxpy nombre de cycles cblas: %Ld \n", end-start-residu) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
+  printf("\n");
+
 
   vector_init_double(vecd2,3.0);
 
   start = _rdtsc () ;
-     mncblas_daxpy (VECSIZE,2.0, vecd1, 1,vecd2,1) ;
+     cblas_daxpy (VECSIZE,2.0,vecd1, 1,vecd2,1) ;
   end = _rdtsc () ;
 
-  printf ("mncblas_dswapy: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print_double(vecd2);
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("cblas_daxpy nombre de cycles cblas: %Ld \n", end-start-residu) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
+  printf("\n");
+
+  if(comparaisonVecteurDouble(vecd1,VECSIZE,blvecd1,VECSIZE)){
+    printf ("Résultats entre cblas et mnblas identiques\n") ;
+  }
+  else{
+    printf ("Erreurs ! Résultats entre cblas et mnblas différents\n") ;
+  }
+
+
+
+  printf("======================================================================\n\n");
 
 //============================================================================================================================//
 
@@ -87,32 +149,66 @@ int main (int argc, char **argv)
   x.real = 2.0;
   x.imaginary = 1.5;
   vector_init_csimple(veccs1,x);
+  vector_init_csimple(blveccs1,x);
 
   x.real = 1.0;
   x.imaginary = 3.0;
   vector_init_csimple(veccs2,x);
+  vector_init_csimple(blveccs2,x);
 
   struct complex_simple w;
   w.real = 1.0;
   w.imaginary = -0.5;
 
+  struct complex_simple v;
+  v.real = 1.0;
+  v.imaginary = -0.5;
+
 
   start = _rdtsc () ;
-     cblas_caxpy (VECSIZE,w, veccs1, 1,veccs2,1) ;
+     cblas_caxpy (VECSIZE,&w, veccs1, 1,veccs2,1) ;
   end = _rdtsc () ;
 
-  printf ("cblas_cswap: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print_vcsimple(veccs2);
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("mncblas_scasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
+  printf ("resultat en Gflops : %f\n",m_Flops) ;
+  printf("\n");
+
+
+
+
+  start = _rdtsc () ;
+     mncblas_caxpy (VECSIZE,&v, blveccs1, 1,blveccs2,1) ;
+  end = _rdtsc () ;
+
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("mncblas_scasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
+  printf ("resultat en Gflops : %f\n",m_Flops) ;
+  printf("\n");
+
+
 
   vector_init_csimple(veccs2,x);
-
   start = _rdtsc () ;
-     resultatcs = mncblas_caxpy (VECSIZE,w, veccs1, 1,veccs2,1) ;
+     cblas_caxpy (VECSIZE,&w, veccs1, 1,veccs2,1) ;
   end = _rdtsc () ;
+  
 
-  printf ("mncblas_cswap: nombre de cycles: %Ld \n", end-start-residu) ;
-  printf ("resultat : %f\n",resultatcs);
-  vector_print_vcsimple(veccs2);
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("mncblas_scasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
+  printf ("resultat en Gflops : %f\n",m_Flops) ;
+  printf("\n");
+
+  if(comparaisonVecteurCS(veccs2,VECSIZE,blveccs2,VECSIZE)){
+    printf ("Résultats entre cblas et mnblas identiques\n") ;
+  }
+  else{
+    printf ("Erreurs ! Résultats entre cblas et mnblas différents\n") ;
+  }
+
+
+
+  printf("=============================================================================\n\n");
 
 //=====================================================================================================================================//
 
@@ -132,20 +228,20 @@ int main (int argc, char **argv)
   z.imaginary = 1.5;
 
   start = _rdtsc () ;
-     resultatcd = cblas_zaxpy (VECSIZE,z, veccd1, 1,veccd2,1) ;
+     cblas_zaxpy (VECSIZE,&z, veccd1, 1,veccd2,1) ;
   end = _rdtsc () ;
 
   printf ("cblas_zswap: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print_vcdouble(veccd2);
+  //vector_print_vcdouble(veccd2);
 
   vector_init_cdouble(veccd2,y);
 
   start = _rdtsc () ;
-     resultatcd = mncblas_zaxpy (VECSIZE,z, veccd1, 1,veccd2,1) ;
+     mncblas_zaxpy (VECSIZE,&z, veccd1, 1,veccd2,1) ;
   end = _rdtsc () ;
 
   printf ("cblas_zswap: nombre de cycles: %Ld \n", end-start-residu) ;
-  vector_print_vcdouble(veccd2);
+  //vector_print_vcdouble(veccd2);
 //=====================================================================================================================================//
 
 

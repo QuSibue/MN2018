@@ -44,8 +44,8 @@ printf("=========================VECTEUR FLOAT================================\n
   start = _rdtsc () ;
      resultatf=cblas_sasum (VECSIZE, vec1, 1) ;
   end = _rdtsc () ;
-	m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
 
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
   printf ("cblas_sasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatf);
 	printf ("resultat en Gflops : %f\n",m_Flops) ;
@@ -96,8 +96,8 @@ printf("=========================VECTEUR Double================================\
   start = _rdtsc () ;
      resultatd = cblas_dasum (VECSIZE, vecd1, 1) ;
   end = _rdtsc () ;
-  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
 
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
   printf ("cblas_dasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatd);
 	printf ("resultat en Gflops : %f\n",m_Flops) ;
@@ -107,8 +107,8 @@ printf("=========================VECTEUR Double================================\
   start = _rdtsc () ;
      resultatd = mncblas_dasum (VECSIZE, blvecd1, 1) ;
   end = _rdtsc () ;
-  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
 
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
   printf ("mncblas_dasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatd);
 	printf ("resultat en Gflops : %f\n",m_Flops) ;
@@ -117,8 +117,8 @@ printf("=========================VECTEUR Double================================\
   start = _rdtsc () ;
      resultatd = cblas_dasum (VECSIZE, vecd1, 1) ;
   end = _rdtsc () ;
-  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
 
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
   printf ("cblas_dasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatd);
 	printf ("resultat en Gflops : %f\n",m_Flops) ;
