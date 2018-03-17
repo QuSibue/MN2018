@@ -5,7 +5,7 @@
 
 #define VECSIZE   1000
 
-
+//LMAO
 
 typedef float vfloat[VECSIZE] ;
 typedef double vdouble[VECSIZE];
