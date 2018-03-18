@@ -139,7 +139,7 @@ void mncblas_zaxpy(const int N, const void *alpha, const void *X,const int incX,
  * Routines with standard 4 prefixes (S, D, C, Z)
  */
 
-/*
+
 
 void mncblas_sgemv(const MNCBLAS_LAYOUT layout,
                  const MNCBLAS_TRANSPOSE TransA, const int M, const int N,
@@ -165,7 +165,7 @@ void mncblas_zgemv(MNCBLAS_LAYOUT layout,
                  const void *X, const int incX, const void *beta,
                  void *Y, const int incY);
 
-*/
+
 
 /*
  * ===========================================================================
@@ -177,7 +177,7 @@ void mncblas_zgemv(MNCBLAS_LAYOUT layout,
  * Routines with standard 4 prefixes (S, D, C, Z)
  */
 
-/*
+
 
 void mncblas_sgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA,
                  MNCBLAS_TRANSPOSE TransB, const int M, const int N,
@@ -185,7 +185,7 @@ void mncblas_sgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA,
                  const int lda, const float *B, const int ldb,
                  const float beta, float *C, const int ldc);
 
-void mncblas_dgemm(MNCBLAS_LAYOUT layout, CBLAS_TRANSPOSE TransA,
+void mncblas_dgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA,
                  MNCBLAS_TRANSPOSE TransB, const int M, const int N,
                  const int K, const double alpha, const double *A,
                  const int lda, const double *B, const int ldb,
@@ -203,4 +203,4 @@ void mncblas_zgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA,
                  const int lda, const void *B, const int ldb,
                  const void *beta, void *C, const int ldc);
 
-*/
+
