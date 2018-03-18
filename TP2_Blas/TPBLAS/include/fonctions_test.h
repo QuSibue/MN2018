@@ -4,6 +4,9 @@
 
 
 #define VECSIZE  1000
+#define M  1000
+#define N  1000
+#define K  1000
 
 
 
@@ -11,6 +14,12 @@ typedef float vfloat[VECSIZE] ;
 typedef double vdouble[VECSIZE];
 typedef struct complex_simple vcsimple[VECSIZE];
 typedef struct complex_double vcdouble[VECSIZE];
+
+typedef float mfloat[M*N] ;
+typedef double mdouble[M*N];
+typedef struct complex_simple mcsimple[M*N];
+typedef struct complex_double mcdouble[M*N];
+
 //=======================================================INIT=========================================================================================//
 void vector_init (vfloat V, float x);
 
@@ -19,6 +28,16 @@ void vector_init_double (vdouble V, double x);
 void vector_init_csimple (vcsimple V, struct complex_simple x);
 
 void vector_init_cdouble (vcdouble V, struct complex_double x);
+
+
+void vector_Minit (vfloat V, float x);
+
+void vector_Minit_double (vdouble V, double x);
+
+void vector_Minit_csimple (vcsimple V, struct complex_simple x);
+
+void vector_Minit_cdouble (vcdouble V, struct complex_double x);
+
 
 //=========================================================================================================================================================//
 

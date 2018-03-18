@@ -52,6 +52,53 @@ void vector_init_cdouble (vcdouble V, struct complex_double x)
   return ;
 }
 
+void vector_Minit (vfloat V, float x)
+{
+  register unsigned int i ;
+
+  for (i = 0; i < M * N; i++)
+    V [i] = x ;
+
+  return ;
+}
+
+void vector_Minit_double (vdouble V, double x)
+{
+  register unsigned int i ;
+
+  for (i = 0; i < M * N; i++)
+    V[i] = x ;
+
+  return ;
+}
+
+
+void vector_Minit_csimple (vcsimple V, struct complex_simple x)
+{
+  register unsigned int i ;
+
+
+  for (i = 0; i < M * N ; i++){
+    V[i].real = x.real ;
+    V[i].imaginary = x.imaginary ;
+  }
+
+
+  return ;
+}
+
+void vector_Minit_cdouble (vcdouble V, struct complex_double x)
+{
+  register unsigned int i ;
+
+  for (i = 0; i < M * N; i++){
+    V[i].real = x.real ;
+    V[i].imaginary = x.imaginary ;
+  }
+
+  return ;
+}
+
 //=========================================================================================================================================================//
 
 

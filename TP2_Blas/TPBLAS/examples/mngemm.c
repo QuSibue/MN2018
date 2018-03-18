@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <cblas.h>
+
+#include "mnblas.h"
+#include "complex.h"
+#include "fonctions_test.h"
+
+/*
+  Mesure des cycles
+*/
+
+#include <x86intrin.h>
+
+//===================================================DEFINITION=============================================================================================//
+
+vfloat vec1,blvec1,vec2,blvec2;
+float resultatf,resultatcs;
+vdouble vecd1,blvecd1,vecd2,blvecd2;
+double resultatd,resultatcd;
+vcsimple veccs1,veccs2,blveccs1,blveccs2;
+vcdouble veccd1,veccd2,blveccd1,blveccd2;
+double m_Flops;
+
+
+
+//=======================================================================================================================================================//
+
+
+int main (int argc, char **argv)
+{
+ unsigned long long start, end ;
+ unsigned long long residu ;
+
+ /* Calcul du residu de la mesure */
+  start = _rdtsc () ;
+  end = _rdtsc () ;
+  residu = end - start ;
+
+
+//====================================================vecteur float===========================================================//
+  vector_init (vec1, 1.0) ;
+  vector_init (vec2, 3.0) ;
+
+  vector_init (blvec1, 1.0) ;
+  vector_init (blvec2, 3.0) ;
+
+printf("=========================VECTEUR FLOAT================================\n");
+
+  start = _rdtsc () ;
+     cblas_saxpy (VECSIZE,2.0, vec1, 1,vec2,1) ;
+  end = _rdtsc () ;
+
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("cblas_saxpy nombre de cycles cblas: %Ld \n", end-start-residu) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
+  printf("\n");
+
+  start = _rdtsc () ;
+     mncblas_saxpy (VECSIZE,2.0, blvec1, 1,blvec2,1) ;
+  end = _rdtsc () ;
+
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("mncblas_sasum: nombre de cycles: %Ld \n", end-start-residu) ;
+	printf ("resultat en Gflop : %f \n",m_Flops) ;
+  printf("\n");
+  //vector_print(vec2);
+
+  vector_init (vec2, 3.0) ;
+  start = _rdtsc () ;
+     cblas_saxpy (VECSIZE,2.0, vec1, 1,vec2,1) ;
+  end = _rdtsc () ;
+
+  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  printf ("cblas_saxpy nombre de cycles cblas: %Ld \n", end-start-residu) ;
+	printf ("resultat en Gflops : %f\n",m_Flops) ;
+  printf("\n");
+
+  if(comparaisonVecteurFloat(vec2,VECSIZE,blvec2,VECSIZE)){
+    printf ("Résultats entre cblas et mnblas identiques\n") ;
+  }
+  else{
+    printf ("Erreurs ! Résultats entre cblas et mnblas différents\n") ;
+  }
+
+
+
+  printf("======================================================================\n\n");
+
+//============================================================================================================================//
+
+
