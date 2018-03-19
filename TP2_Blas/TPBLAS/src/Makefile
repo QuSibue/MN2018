@@ -11,16 +11,16 @@ OPTIONS=-fPIC $(OPTIM) -I$(INC_DIR)
 
 # Bibliothèque statique
 
-libmnblas.a: copy.o swap.o dot.o nrm2.o asum.o gemv.o axpy.o gemm.o
+libmnblas.a: copy.o swap.o dot.o nrm2.o asum.o gemv.o axpy.o gemm.o complex.o
 	rm -f libmnblas.a $(LIB_DIR)/libmnblas.a
-	ar -r libmnblas.a copy.o swap.o dot.o nrm2.o asum.o axpy.o gemm.o
+	ar -r libmnblas.a copy.o swap.o dot.o nrm2.o asum.o axpy.o gemm.o complex.o
 	cp libmnblas.a $(LIB_DIR)
 
 # Bibliothèque dynamique
 
-libmnblasdyn.so:copy.o swap.o dot.o nrm2.o asum.o gemv.o axpy.o gemm.o
+libmnblasdyn.so:copy.o swap.o dot.o nrm2.o asum.o gemv.o axpy.o gemm.o complex.o
 	rm -f libmnblasdyn.so $(LIB_DIR)/libmnblasdyn.so
-	gcc -shared -o libmnblasdyn.so copy.o swap.o dot.o nrm2.o asum.o gemv.o axpy.o gemm.o
+	gcc -shared -o libmnblasdyn.so copy.o swap.o dot.o nrm2.o asum.o gemv.o axpy.o gemm.o complex.o
 	cp libmnblasdyn.so $(LIB_DIR)
 
 # BLAS 1

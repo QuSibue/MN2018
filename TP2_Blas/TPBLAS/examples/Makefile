@@ -1,4 +1,4 @@
-all: mntest mnswap mnasum mnnrm2 mndot mnaxpy
+all: mntest mnswap mnasum mnnrm2 mndot mnaxpy mngemm
 
 INC_DIR=../include
 
@@ -33,6 +33,9 @@ mnswapdyn: mnswap.o $(LIB_DIR)/libmnblasdyn.so
 mndot: mndot.o $(LIB_DIR)/libmnblas.a fonctions_test.o
 	gcc -o mndot mndot.o fonctions_test.o $(OPTIONS_LINK_STATIC)
 
+mngemm: mngemm.o $(LIB_DIR)/libmnblas.a fonctions_test.o
+	gcc -o mngemm mngemm.o fonctions_test.o $(OPTIONS_LINK_STATIC)
+
 mntestdyn: mntest.o $(LIB_DIR)/libmnblasdyn.so fonctions_test.o
 	gcc -o mntestdyn mntest.o fonctions_test.o $(OPTIONS_LINK_DYN)
 
@@ -56,6 +59,9 @@ mnswap.o: mnswap.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h $(INC_DIR)/fonctions
 
 mndot.o: mndot.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h $(INC_DIR)/fonctions_test.h
 	gcc $(OPTIONS_COMPIL) -c mndot.c
+
+mngemm.o: mngemm.c $(INC_DIR)/mnblas.h $(INC_DIR)/complex.h $(INC_DIR)/fonctions_test.h
+	gcc $(OPTIONS_COMPIL) -c mngemm.c
 
 fonctions_test.o: fonctions_test.c $(INC_DIR)/complex.h $(INC_DIR)/fonctions_test.h
 	gcc $(OPTIONS_COMPIL) -c fonctions_test.c
