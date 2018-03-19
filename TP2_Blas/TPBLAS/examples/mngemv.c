@@ -20,7 +20,7 @@ mdouble mvecdA,blmvecdA;
 vdouble vecdX,vecdY,blvecdX,blvecdY;
 
 
-mcdouble mveccsA,blmveccsA;
+mcsimple mveccsA,blmveccsA;
 vcsimple veccsX,veccsY,blveccsX,blveccsY;
 struct complex_simple alphacs,betacs;
 
