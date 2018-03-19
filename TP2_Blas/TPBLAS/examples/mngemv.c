@@ -20,7 +20,7 @@ mdouble mvecdA,blmvecdA;
 vdouble vecdX,vecdY,blvecdX,blvecdY;
 
 
-mcdouble veccsA,blveccsA;
+mcdouble mveccsA,blmveccsA;
 vcsimple veccsX,veccsY,blveccsX,blveccsY;
 struct complex_simple alphacs,betacs;
 
@@ -176,7 +176,7 @@ printf("=========================VECTEUR COMPLEX_SIMPLE===v=====================
   printf("\n");
 
   start = _rdtsc () ;
-     mncblas_dgemv(MNCblasRowMajor,MNCblasNoTrans,M,N,&alphacs,mveccsA,M,veccsX,1,&betacs,veccsY,1);
+     mncblas_cgemv(MNCblasRowMajor,MNCblasNoTrans,M,N,&alphacs,mveccsA,M,veccsX,1,&betacs,veccsY,1);
   end = _rdtsc () ;
 
   m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
@@ -186,7 +186,7 @@ printf("=========================VECTEUR COMPLEX_SIMPLE===v=====================
 
   vector_init_csimple (blveccsY, ccs) ;
   start = _rdtsc () ;
-     cblas_dgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,&alphacs,blmveccsA,M,blveccsX,1,&betacs,blveccsY,1) ;
+     cblas_cgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,&alphacs,blmveccsA,M,blveccsX,1,&betacs,blveccsY,1) ;
   end = _rdtsc () ;
 
   m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
