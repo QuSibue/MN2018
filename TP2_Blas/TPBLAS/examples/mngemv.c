@@ -14,9 +14,9 @@
 //===================================================DEFINITION=============================================================================================//
 
 mfloat mvecA,blmvecA;
-vfloat vecA,blvecA;
+vfloat vecX,blvecX,vecY,blvecY;
 
-mdouble vecdA,blvecdA,vecdB,blvecdB,vecdC,blvecdC;
+mdouble vecdA,blvecdA,vecdB,blvecdB;
 mcsimple veccsA,veccsB,blveccsA,blveccsB,blveccsC,veccsC;
 struct complex_simple alphacs,betacs;
 mcdouble veccdA,veccdB,blveccdA,blveccdB,blveccdC,veccdC;
@@ -41,16 +41,18 @@ int main (int argc, char **argv)
 
 //====================================================vecteur float===========================================================//
   vector_Minit (mvecA, 1.0);
-  vector_init ( vecA,2.0);
+  vector_init ( vecX,2.0);
+	vector_init ( vecY,3.0);
 
   vector_Minit (blmvecA, 1.0) ;
-  vector_init ( blvecA,2.0);
+  vector_init ( blvecX,2.0);
+	vector_init ( blvecY,3.0);
 
 
 printf("=========================VECTEUR FLOAT================================\n");
 
   start = _rdtsc () ;
-     cblas_sgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,alpha,A,M,X,incX,beta,Y,incY) ;
+     cblas_sgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,blmvecA,M,blvecX,1,2.0,blvecY,1) ;
   end = _rdtsc () ;
 
   m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
@@ -60,7 +62,7 @@ printf("=========================VECTEUR FLOAT================================\n
   //vector_print(vecC);
 
   start = _rdtsc () ;
-     mncblas_sgemv (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,N,K,2.0, blvecA,M,blvecB,N,1.0,blvecC,M);
+     mncblas_sgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,A,M,vecX,1,2.0,vecY,1);
   end = _rdtsc () ;
 
   m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
@@ -69,9 +71,9 @@ printf("=========================VECTEUR FLOAT================================\n
   printf("\n");
   //vector_print(blvecC);
 
-  vector_Minit (vecC, 2.0) ;
+  vector_Minit_cdouble (mvecA, 1.0) ;
   start = _rdtsc () ;
-     cblas_sgemv (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,M,K,2.0, vecA,M,vecB,N,1.0,vecC,N) ;
+     cblas_sgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,blmvecA,M,blvecX,1,2.0,blvecY,1) ;
   end = _rdtsc () ;
 
   m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
