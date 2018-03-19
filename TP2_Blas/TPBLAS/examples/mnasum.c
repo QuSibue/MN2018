@@ -154,7 +154,7 @@ printf("=========================VECTEUR COMPLEXES SIMPLES======================
      resultatcs = cblas_scasum (VECSIZE, veccs1, 1) ;
   end = _rdtsc () ;
 
-  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  m_Flops=FLOPS(1,3.4,4*VECSIZE,end-start-residu);
   printf ("mncblas_scasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcs);
   printf ("resultat en Gflops : %f\n",m_Flops) ;
@@ -163,7 +163,7 @@ printf("=========================VECTEUR COMPLEXES SIMPLES======================
   start = _rdtsc () ;
      resultatcs = mncblas_scasum (VECSIZE, veccs1, 1) ;
   end = _rdtsc () ;
-  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  m_Flops=FLOPS(1,3.4,4*VECSIZE,end-start-residu);
   printf ("mncblas_scasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcs);
   printf ("resultat en Gflops : %f\n",m_Flops) ;
@@ -173,7 +173,7 @@ printf("=========================VECTEUR COMPLEXES SIMPLES======================
      resultatcs = cblas_scasum (VECSIZE, veccs1, 1) ;
   end = _rdtsc () ;
 
-  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  m_Flops=FLOPS(1,3.4,4*VECSIZE,end-start-residu);
   printf ("mncblas_scasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcs);
   printf ("resultat en Gflops : %f\n",m_Flops) ;
@@ -207,7 +207,7 @@ printf("=========================VECTEUR COMPLEXES DOUBLES======================
      resultatcd = cblas_dzasum (VECSIZE, veccd1, 1) ;
   end = _rdtsc () ;
 
-  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  m_Flops=FLOPS(1,3.4,4*VECSIZE,end-start-residu);
   printf ("mncblas_dzasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcd);
   printf ("resultat en Gflops : %f\n",m_Flops) ;
@@ -217,7 +217,7 @@ printf("=========================VECTEUR COMPLEXES DOUBLES======================
      resultatcd = mncblas_dzasum (VECSIZE, veccd1, 1) ;
   end = _rdtsc () ;
 
-  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  m_Flops=FLOPS(1,3.4,4*VECSIZE,end-start-residu);
   printf ("mncblas_dzasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcd);
   printf ("resultat en Gflops : %f\n",m_Flops) ;
@@ -227,7 +227,7 @@ printf("=========================VECTEUR COMPLEXES DOUBLES======================
      resultatcd = cblas_dzasum (VECSIZE, veccd1, 1) ;
   end = _rdtsc () ;
 
-  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  m_Flops=FLOPS(1,3.4,4*VECSIZE,end-start-residu);
   printf ("mncblas_dzasum nombre de cycles cblas: %Ld \n", end-start-residu) ;
   printf ("resultat: %f\n",resultatcd);
   printf ("resultat en Gflops : %f\n",m_Flops) ;

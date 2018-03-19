@@ -53,7 +53,7 @@ printf("=========================VECTEUR FLOAT================================\n
      cblas_sgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,N,K,2.0, vecA,M,vecB,N,1.0,vecC,M) ;
   end = _rdtsc () ;
 
-  m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
+  m_Flops=FLOPS(1,3.4,2*M*N*K+3*N*M,end-start-residu);
   printf ("cblas_sgemm nombre de cycles cblas: %Ld \n", end-start-residu) ;
 	printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
@@ -63,7 +63,7 @@ printf("=========================VECTEUR FLOAT================================\n
      mncblas_sgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,N,K,2.0, blvecA,M,blvecB,N,1.0,blvecC,M);
   end = _rdtsc () ;
 
-  m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
+  m_Flops=FLOPS(1,3.4,2*M*N*K+3*N*M,end-start-residu);
   printf ("mncblas_sgemm: nombre de cycles: %Ld \n", end-start-residu) ;
 	printf ("resultat en Gflop : %f \n",m_Flops) ;
   printf("\n");
@@ -74,7 +74,7 @@ printf("=========================VECTEUR FLOAT================================\n
      cblas_sgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,M,K,2.0, vecA,M,vecB,N,1.0,vecC,N) ;
   end = _rdtsc () ;
 
-  m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
+  m_Flops=FLOPS(1,3.4,2*M*N*K+3*N*M,end-start-residu);
   printf ("cblas_sgemm nombre de cycles cblas: %Ld \n", end-start-residu) ;
 	printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
@@ -105,7 +105,7 @@ printf("=========================VECTEUR DOUBLE================================\
      cblas_dgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,N,K,2.0, vecdA,M,vecdB,N,1.0,vecdC,M) ;
   end = _rdtsc () ;
 
-  m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
+  m_Flops=FLOPS(1,3.4,2*M*N*K+3*N*M,end-start-residu);
   printf ("cblas_sgemm nombre de cycles cblas: %Ld \n", end-start-residu) ;
 	printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
@@ -114,7 +114,7 @@ printf("=========================VECTEUR DOUBLE================================\
      mncblas_dgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,N,K,2.0, blvecdA,M,blvecdB,N,1.0,blvecdC,M);
   end = _rdtsc () ;
 
-  m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
+  m_Flops=FLOPS(1,3.4,2*M*N*K+3*N*M,end-start-residu);
   printf ("mncblas_sgemm: nombre de cycles: %Ld \n", end-start-residu) ;
 	printf ("resultat en Gflop : %f \n",m_Flops) ;
   printf("\n");
@@ -125,7 +125,7 @@ printf("=========================VECTEUR DOUBLE================================\
      cblas_dgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,M,K,2.0, vecdA,M,vecdB,N,1.0,vecdC,N) ;
   end = _rdtsc () ;
 
-  m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
+  m_Flops=FLOPS(1,3.4,2*M*N*K+3*N*M,end-start-residu);
   printf ("cblas_sgemm nombre de cycles cblas: %Ld \n", end-start-residu) ;
 	printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
@@ -169,7 +169,7 @@ printf("=========================VECTEUR DOUBLE================================\
        cblas_cgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,N,K,&alphacs, veccsA,M,veccsB,N,&betacs,veccsC,M) ;
     end = _rdtsc () ;
 
-    m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
+    m_Flops=FLOPS(1,3.4,8*M*N*K+14*N*M,end-start-residu);
     printf ("cblas_sgemm nombre de cycles cblas: %Ld \n", end-start-residu) ;
   	printf ("resultat en Gflops : %f\n",m_Flops) ;
     printf("\n");
@@ -178,7 +178,7 @@ printf("=========================VECTEUR DOUBLE================================\
        mncblas_cgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,N,K,&alphacs, blveccsA,M,blveccsB,N,&betacs,blveccsC,M);
     end = _rdtsc () ;
 
-    m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
+    m_Flops=FLOPS(1,3.4,8*M*N*K+14*N*M,end-start-residu);
     printf ("mncblas_sgemm: nombre de cycles: %Ld \n", end-start-residu) ;
   	printf ("resultat en Gflop : %f \n",m_Flops) ;
     printf("\n");
@@ -189,7 +189,7 @@ printf("=========================VECTEUR DOUBLE================================\
        cblas_cgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,M,K,&alphacs, veccsA,M,veccsB,N,&betacs,veccsC,N) ;
     end = _rdtsc () ;
 
-    m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
+    m_Flops=FLOPS(1,3.4,8*M*N*K+14*N*M,end-start-residu);
     printf ("cblas_sgemm nombre de cycles cblas: %Ld \n", end-start-residu) ;
   	printf ("resultat en Gflops : %f\n",m_Flops) ;
     printf("\n");
@@ -234,7 +234,7 @@ printf("=========================VECTEUR DOUBLE================================\
            cblas_zgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,N,K,&alphacd, veccdA,M,veccdB,N,&betacd,veccdC,M) ;
         end = _rdtsc () ;
 
-        m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
+        m_Flops=FLOPS(1,3.4,8*M*N*K+14*N*M,end-start-residu);
         printf ("cblas_sgemm nombre de cycles cblas: %Ld \n", end-start-residu) ;
       	printf ("resultat en Gflops : %f\n",m_Flops) ;
         printf("\n");
@@ -243,17 +243,17 @@ printf("=========================VECTEUR DOUBLE================================\
            mncblas_zgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,N,K,&alphacd, blveccdA,M,blveccdB,N,&betacd,blveccdC,M);
         end = _rdtsc () ;
 
-        m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
+        m_Flops=FLOPS(1,3.4,8*M*N*K+14*N*M,end-start-residu);
         printf ("mncblas_sgemm: nombre de cycles: %Ld \n", end-start-residu) ;
       	printf ("resultat en Gflop : %f \n",m_Flops) ;
         printf("\n");
-        
+
         vector_Minit_cdouble (veccdC, cds) ;
         start = _rdtsc () ;
            cblas_zgemm (MNCblasRowMajor,MNCblasNoTrans,MNCblasNoTrans,M,M,K,&alphacd, veccdA,M,veccdB,N,&betacd,veccdC,N) ;
         end = _rdtsc () ;
 
-        m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
+        m_Flops=FLOPS(1,3.4,8*M*N*K+14*N*M,end-start-residu);
         printf ("cblas_sgemm nombre de cycles cblas: %Ld \n", end-start-residu) ;
       	printf ("resultat en Gflops : %f\n",m_Flops) ;
         printf("\n");
