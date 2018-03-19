@@ -107,7 +107,7 @@ printf("=========================VECTEUR FLOAT================================\n
 printf("=========================VECTEUR FLOAT================================\n");
 
   start = _rdtsc () ;
-     cblas_sgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,blmvecdA,M,blvecdX,1,2.0,blvecdY,1) ;
+     cblas_dgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,blmvecdA,M,blvecdX,1,2.0,blvecdY,1) ;
   end = _rdtsc () ;
 
   m_Flops=FLOPS(1,3.4,2*VECSIZE,end-start-residu);
@@ -116,7 +116,7 @@ printf("=========================VECTEUR FLOAT================================\n
   printf("\n");
 
   start = _rdtsc () ;
-     mncblas_sgemv(MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,mvecdA,M,vecdX,1,2.0,vecdY,1);
+     mncblas_dgemv(MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,mvecdA,M,vecdX,1,2.0,vecdY,1);
   end = _rdtsc () ;
 
   m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
@@ -126,7 +126,7 @@ printf("=========================VECTEUR FLOAT================================\n
 
   vector_init_double (blvecdY, 3.0) ;
   start = _rdtsc () ;
-     cblas_sgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,blmvecdA,M,blvecdX,1,2.0,blvecdY,1) ;
+     cblas_dgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,blmvecdA,M,blvecdX,1,2.0,blvecdY,1) ;
   end = _rdtsc () ;
 
   m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
