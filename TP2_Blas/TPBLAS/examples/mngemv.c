@@ -16,8 +16,8 @@
 mfloat mvecA,blmvecA;
 vfloat vecX,blvecX,vecY,blvecY;
 
-mdouble mvecdA,blmvecdA
-mcsimple vecdX,vecdY,blvecdX,blvecdY
+mdouble mvecdA,blmvecdA;
+vdouble vecdX,vecdY,blvecdX,blvecdY;
 
 
 struct complex_simple alphacs,betacs;
@@ -42,13 +42,13 @@ int main (int argc, char **argv)
 
 
 //====================================================vecteur float===========================================================//
-  vector_Minit (mvecdA, 1.0);
-  vector_init ( vecdX,2.0);
-	vector_init ( vecdY,3.0);
+  vector_Minit (mvecA, 1.0);
+  vector_init ( vecX,2.0);
+	vector_init ( vecY,3.0);
 
-  vector_Minit (blmvecdA, 1.0) ;
-  vector_init ( blvecdX,2.0);
-	vector_init ( blvecdY,3.0);
+  vector_Minit (blmvecA, 1.0) ;
+  vector_init ( blvecX,2.0);
+	vector_init ( blvecY,3.0);
 
 
 printf("=========================VECTEUR FLOAT================================\n");
@@ -71,7 +71,7 @@ printf("=========================VECTEUR FLOAT================================\n
   printf ("mncblas_sgemm: nombre de cycles: %Ld \n", end-start-residu) ;
 	printf ("resultat en Gflop : %f \n",m_Flops) ;
   printf("\n");
-  vector_print(vecY);
+  //vector_print(vecY);
 
   vector_init (blvecY, 3.0) ;
   start = _rdtsc () ;
@@ -92,19 +92,19 @@ printf("=========================VECTEUR FLOAT================================\n
   }
 
 
-	
+
 
 //====================================================vecteur double===========================================================//
-  vector_Minit_double (mvecA, 1.0);
-  vector_init_double ( vecX,2.0);
-	vector_init_double ( vecY,3.0);
+  vector_Minit_double (mvecdA, 1.0);
+  vector_init_double ( vecdX,2.0);
+	vector_init_double ( vecdY,3.0);
 
-  vector_Minit_double (blmvecA, 1.0) ;
-  vector_init_double ( blvecX,2.0);
-	vector_init_double ( blvecY,3.0);
+  vector_Minit_double (blmvecdA, 1.0) ;
+  vector_init_double ( blvecdX,2.0);
+	vector_init_double ( blvecdY,3.0);
 
 
-printf("=========================VECTEUR FLOAT================================\n");
+printf("=========================VECTEUR DOUBLE================================\n");
 
   start = _rdtsc () ;
      cblas_dgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,blmvecdA,M,blvecdX,1,2.0,blvecdY,1) ;
