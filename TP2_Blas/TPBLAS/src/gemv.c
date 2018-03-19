@@ -11,20 +11,16 @@ void mncblas_sgemv (const MNCBLAS_LAYOUT layout,
   register unsigned int i = 0 ;
   register unsigned int j = 0 ;
 
-  float* tmp = malloc(M * sizeof(float));
-  for (; j < N ; j += incY) {
-    tmp[j] = Y[j];
-  }
-  float res;
+  float tmp ;
   for (; i < M ; i += incX) {
-    res = 0.;
-    for (j=0; j < N ;j += incY) {
-      res += alpha * A[j+N*i] * X[j] + beta * tmp[j];
+    tmp = A[0+N*i] * X[0] ;
+    for (j=1; j < N ;j += incY) {
+      tmp +=  A[j+N*i] * X[j] ;
     }
-    Y[i] = res;
+    Y[i] =alpha * tmp + beta * Y[j];
   }
 
-  free(tmp);
+
   return;
 }
 
