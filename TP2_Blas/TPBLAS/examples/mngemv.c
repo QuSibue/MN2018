@@ -20,7 +20,7 @@ mdouble mvecdA,blmvecdA;
 vdouble vecdX,vecdY,blvecdX,blvecdY;
 
 
-mcdouble veccdA,blveccdA;
+mcdouble veccsA,blveccsA;
 vcsimple veccsX,veccsY,blveccsX,blveccsY;
 struct complex_simple alphacs,betacs;
 
@@ -161,8 +161,8 @@ struct complex_simple ccs;ccs.real=3.0;ccs.imaginary=6.0;
   vector_init_csimple ( blveccsX,bcs);
 	vector_init_csimple ( blveccsY,ccs);
 
-struct complex_simple alphacs.real=1.0;alphacs.imaginary=2.0;
-struct complex_simple betacs.real=2.0;betacs.imaginary=3.0;
+	alphacs.real=1.0;alphacs.imaginary=2.0;
+	betacs.real=2.0;betacs.imaginary=3.0;
 
 printf("=========================VECTEUR COMPLEX_SIMPLE===v=============================\n");
 
@@ -184,7 +184,7 @@ printf("=========================VECTEUR COMPLEX_SIMPLE===v=====================
 	printf ("resultat en Gflop : %f \n",m_Flops) ;
   printf("\n");
 
-  vector_init_double (blveccsY, ccs) ;
+  vector_init_csimple (blveccsY, ccs) ;
   start = _rdtsc () ;
      cblas_dgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,&alphacs,blmveccsA,M,blveccsX,1,&betacs,blveccsY,1) ;
   end = _rdtsc () ;
