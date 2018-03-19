@@ -62,16 +62,15 @@ printf("=========================VECTEUR FLOAT================================\n
   //vector_print(vecC);
 
   start = _rdtsc () ;
-     mncblas_sgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,A,M,vecX,1,2.0,vecY,1);
+     mncblas_sgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,mvecA,M,vecX,1,2.0,vecY,1);
   end = _rdtsc () ;
 
   m_Flops=FLOPS(1,3.4,31*M*N + 61 *M*N,end-start-residu);
   printf ("mncblas_sgemm: nombre de cycles: %Ld \n", end-start-residu) ;
 	printf ("resultat en Gflop : %f \n",m_Flops) ;
   printf("\n");
-  //vector_print(blvecC);
 
-  vector_Minit_cdouble (mvecA, 1.0) ;
+  vector_Minit (mvecA, 1.0) ;
   start = _rdtsc () ;
      cblas_sgemv (MNCblasRowMajor,MNCblasNoTrans,M,N,1.0,blmvecA,M,blvecX,1,2.0,blvecY,1) ;
   end = _rdtsc () ;
@@ -81,7 +80,7 @@ printf("=========================VECTEUR FLOAT================================\n
 	printf ("resultat en Gflops : %f\n",m_Flops) ;
   printf("\n");
 
-  if(comparaisonVecteurFloat(vecC,M*N,blvecC,M*N)){
+  if(comparaisonVecteurFloat(vecY,N,blvecY,M*N)){
     printf ("Résultats entre cblas et mnblas identiques\n") ;
   }
   else{

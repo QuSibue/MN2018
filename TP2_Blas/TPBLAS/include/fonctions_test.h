@@ -3,7 +3,7 @@
 #include "complex.h"
 
 
-#define VECSIZE  1000
+#define VECSIZE  256
 #define M  256
 #define N  256
 #define K  256
