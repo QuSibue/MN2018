@@ -17,7 +17,7 @@ void mncblas_sgemv (const MNCBLAS_LAYOUT layout,
     for (j=1; j < N ;j += incY) {
       tmp +=  A[j+N*i] * X[j] ;
     }
-    Y[i] =alpha * tmp + beta * Y[j];
+    Y[i] =alpha * tmp + beta * Y[i];
   }
 
 
