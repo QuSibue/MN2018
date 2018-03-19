@@ -8,14 +8,14 @@ void mncblas_sgemv (const MNCBLAS_LAYOUT layout,
                  const float *X, const int incX, const float beta,
                  float *Y, const int incY)
 {
-  register unsigned int i = 0 ;
-  register unsigned int j = 0 ;
+  register unsigned int i;
+  register unsigned int j;
 
   float tmp ;
-  for (; i < M ; i += incX) {
-    tmp = A[0+N*i] * X[0] ;
+  for (i = 0 ; i < M ; i += incX) {
+    tmp = A[i] * X[0] ;
     for (j=1; j < N ;j += incY) {
-      tmp +=  A[j+N*i] * X[j] ;
+      tmp +=  A[j*N+i] * X[j] ;
     }
     Y[i] =alpha * tmp + beta * Y[i];
   }
@@ -30,23 +30,19 @@ void mncblas_dgemv (MNCBLAS_LAYOUT layout,
                  const double *X, const int incX, const double beta,
                  double *Y, const int incY)
 {
-  register unsigned int i = 0 ;
-  register unsigned int j = 0 ;
+  register unsigned int i;
+  register unsigned int j;
 
-  double* tmp = malloc(M * sizeof(double));
-  for (; j < N ; j += incY) {
-    tmp[j] = Y[j];
-  }
-  double res;
-  for (; i < M ; i += incX) {
-    res = 0.;
-    for (j=0; j < N ;j += incY) {
-      res += alpha * A[j+N*i] * X[j] + beta * tmp[j];
+  double tmp ;
+  for (i = 0 ; i < M ; i += incX) {
+    tmp = A[0+N*i] * X[0] ;
+    for (j=1; j < N ;j += incY) {
+      tmp +=  A[j+N*i] * X[j] ;
     }
-    Y[i] = res;
+    Y[i] =alpha * tmp + beta * Y[i];
   }
 
-  free(tmp);
+
   return;
 }
 
