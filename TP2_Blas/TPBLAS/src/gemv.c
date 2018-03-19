@@ -77,12 +77,12 @@ for (; i < M ; i += incX) {
 
     for (j=0; j < N ;j += incY) {
       res = addition_cs(res,addition_cs(
-								multiplication_cs( 
-										multiplication_cs( *((struct complex_simple*)alpha) , ((struct complex_simple*)A)[j+N*i]) 
-										,((struct complex_simple*)X)[j] 
+								multiplication_cs(
+										multiplication_cs( *((struct complex_simple*)alpha) , ((struct complex_simple*)A)[j+N*i])
+										,((struct complex_simple*)X)[j]
 								),
 								multiplication_cs( *((struct complex_simple*)beta) , tmp[j] )
-							) 
+							)
 			);
     }
     ((struct complex_simple*)Y)[i] = res;
@@ -115,12 +115,12 @@ for (; i < M ; i += incX) {
 
     for (j=0; j < N ;j += incY) {
       res = addition_cd(res,addition_cd(
-								multiplication_cd( 
-										multiplication_cd( *((struct complex_double*)alpha) , ((struct complex_double*)A)[j+N*i]) 
-										,((struct complex_double*)X)[j] 
+								multiplication_cd(
+										multiplication_cd( *((struct complex_double*)alpha) , ((struct complex_double*)A)[j+N*i])
+										,((struct complex_double*)X)[j]
 								),
 								multiplication_cd( *((struct complex_double*)beta) , tmp[j] )
-							) 
+							)
 			);
     }
     ((struct complex_double*)Y)[i] = res;

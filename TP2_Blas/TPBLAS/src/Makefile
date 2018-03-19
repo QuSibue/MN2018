@@ -13,7 +13,7 @@ OPTIONS=-fPIC $(OPTIM) -I$(INC_DIR)
 
 libmnblas.a: copy.o swap.o dot.o nrm2.o asum.o gemv.o axpy.o gemm.o complex.o
 	rm -f libmnblas.a $(LIB_DIR)/libmnblas.a
-	ar -r libmnblas.a copy.o swap.o dot.o nrm2.o asum.o axpy.o gemm.o complex.o
+	ar -r libmnblas.a copy.o swap.o dot.o nrm2.o asum.o axpy.o gemm.o complex.o gemv.o
 	cp libmnblas.a $(LIB_DIR)
 
 # Bibliothèque dynamique
